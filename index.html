@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="container" :class="{ slide: playing }" id="app">
+    <div class="container" v-if="playing" :class="{ slide: playing }" id="app">
         <input class="word-input" type="text" v-model="wordInput" ref="wordInput" @keyUp="checkMatch"
             placeholder="type the word.." autofocus>
 

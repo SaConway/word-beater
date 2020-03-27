@@ -18,7 +18,9 @@ var app = new Vue({
   },
   methods: {
     async getWords() {
-      const res = await fetch("/words.json");
+      const res = await fetch(
+        "https://saconway.github.io/word-beater/words.json"
+      );
       const json = await res.json();
       return json.words;
     },
