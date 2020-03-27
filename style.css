@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Sen&display=swap");
+
+:root {
+  --clr-bg: #233142;
+  --clr-primary: #ffbd39;
+  --clr-accent: #e3e3e3;
+}
+
+::selection {
+  color: var(--clr-accent);
+  background-color: var(--clr-primary);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #455d7a;
+  color: var(--clr-accent);
+  height: 100vh;
+  font-family: "Sen", sans-serif;
+  display: flex;
+  overflow: hidden;
+}
+
+.container {
+  margin: auto;
+  display: grid;
+  grid-template-rows: min-content auto;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+.container.slide {
+  animation: fade-in 1s ease-in-out forwards;
+}
+
+/* scores */
+
+.scores-wrapper {
+  grid-column: 2 / -1;
+  grid-row: 2 / -1;
+  margin-left: 7rem;
+  white-space: nowrap;
+  width: 22rem;
+}
+
+.score {
+  font-size: 1rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  position: relative;
+}
+
+.score + .score {
+  margin-left: 5rem;
+}
+
+.score span {
+  font-size: 3rem;
+  margin-left: 0.5rem;
+  font-weight: bold;
+}
+
+.score-addition {
+  color: var(--clr-primary);
+  position: absolute;
+  right: -1.25rem;
+  animation: slide-score-addition 2.5s ease-in-out forwards;
+}
+
+.new-rocord {
+  color: var(--clr-primary);
+  white-space: nowrap;
+  position: absolute;
+  animation: slide-new-record 0.7s ease-in-out forwards;
+}
+
+/* progress and current word */
+
+.progress {
+  grid-row: 2 / -1;
+  grid-column: 1 / 2;
+}
+
+.progress-background {
+  stroke: var(--clr-accent);
+  stroke-dasharray: 1231.5;
+  stroke-dashoffset: 1231.5;
+}
+
+.slide .progress-background {
+  animation: fill-progress-background 1s ease-in-out forwards;
+}
+
+.progress-foreground {
+  stroke: var(--clr-primary);
+  stroke-dasharray: 1231.5;
+  stroke-dashoffset: 1231.5;
+  transition-property: stroke-dashoffset;
+  transition-timing-function: linear;
+}
+
+.current-word {
+  fill: var(--clr-primary);
+  font-size: 3rem;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+/* word input */
+
+.word-input {
+  width: 13rem;
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  font-size: 1.25rem;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  letter-spacing: 2px;
+  margin: 0 auto 7rem;
+}
+
+.word-input:focus {
+  outline: none;
+}
+
+.word-input::placeholder {
+  color: var(--clr-accent);
+  opacity: 0.5;
+}
+
+/* animations */
+
+@keyframes fill-progress-background {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-score-addition {
+  0% {
+    opacity: 0;
+    top: 65%;
+  }
+
+  30% {
+    opacity: 1;
+    top: 10%;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-new-record {
+  0% {
+    bottom: -120%;
+  }
+
+  100% {
+    bottom: -70%;
+    letter-spacing: 2px;
+  }
+}

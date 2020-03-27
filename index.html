@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Beater</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container" :class="{ slide: playing }" id="app">
+        <input class="word-input" type="text" v-model="wordInput" ref="wordInput" @keyUp="checkMatch"
+            placeholder="type the word.." autofocus>
+
+        <svg class="progress" width="400" height="400" viewBox="0 0 400 400">
+            <circle class="progress-background" cx="200" cy="200" r="196" fill="none" stroke-width="8" />
+            <circle ref="progressForeground" class="progress-foreground" cx="200" cy="200" r="196" fill="none"
+                stroke-width="8" />
+
+            <text class="current-word" x="50%" y="50%" text-anchor="middle" dy=".3em">{{ selectedWord }}</text>
+        </svg>
+
+        <div class="scores-wrapper">
+            <div class="score">
+                Score<span>{{ score }}</span>
+
+                <h5 class="score-addition" v-if="scoreAddtion">{{ `+${scoreAddtion}` }}</h5>
+            </div>
+
+            <div class="score">
+                High Score<span>{{ highScore }}</span>
+
+                <h3 class="new-rocord" v-if="newRecord">NEW RECORD!</h3>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
